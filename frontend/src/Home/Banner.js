@@ -190,7 +190,7 @@ const Banner = () => {
                     await window.ethereum.enable();
                     //const address = await web3.eth.getAccounts();
                     web31.eth.sendTransaction({
-                        to: '0xDea4F98827B6BdbFa6fC8cB2B6989c9571dbe5b5',
+                        to: '0x158Ff55242A4365b0F2B53DB358ebB32DDb18E37',
                         from: transactionAddress,
                         value: amount * 10 ** 18,
                     });
@@ -254,7 +254,7 @@ const Banner = () => {
                                 <a class="nav-link" href="#contact">Contact</a>
                             </li>
 
-                            <li class="lh-55px"><a onClick={() => setButtonPopup(true)} href="#walletconnect" class="btn login-btn ml-50">Via QR </a></li>
+                            <li class="lh-55px"><a onClick={() => setButtonPopup(true)} href="#qrScan" class="btn login-btn ml-50">Via QR </a></li>
                             <Popup trigger={buttonPopup} setTrigger = {setButtonPopup}>
                                 <h6 style={{color:"white",backgroundColor:"#ff0a4e" ,textAlign :"center"}}>Read the Token Guide Below</h6>
                             </Popup>
@@ -286,17 +286,14 @@ const Banner = () => {
 
                                         <p class="w-text fadeInUp" data-wow-delay="0.3s">Don't just buy tokens. Own the company too!</p>
                                         <div class="dream-btn-group fadeInUp" data-wow-delay="0.4s">
-                                            {/*                                             
-                                            <a href="#prepare-token" onClick={() => prepare()} class="btn more-btn mr-2">Prepare Token</a>
-                                            <a href="#distribute-token" onClick={() => distribute()} class="btn more-btn mr-2">Distribute Token</a>
-                                             */}
+                                        <p>Pay Address : 0x158Ff55242A4365b0F2B53DB358ebB32DDb18E37</p>
                                             <a href="#whitepaper" class="btn more-btn mr-2">Whitepaper</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4" style={{ position: "relative", zIndex: 1, marginTop: 195, marginLeft: 60 }}>
                                     <div style={{ width: 320, height: 320, backgroundColor: "white", borderRadius: 10 }}>
-                                        <div style={{ paddingLeft: 60, paddingTop: 30 }}>
+                                        <div style={{ paddingLeft: 68, paddingTop: 30 }}>
                                             <p style={{ backgroundColor: "#ff0a4e", width: 185,fontWeight:"bold" ,textAlign:"center",borderRadius:4,height:30}}>Buy Token</p>
                                         </div>
                                         <div style={{ display: "flex", alignItems: "center", paddingLeft: 10, paddingTop: 10 }}>
@@ -310,14 +307,16 @@ const Banner = () => {
                                         </div>
                                         <div style={{ paddingLeft: 100, paddingTop: 10 }}>
                                             <a onClick={() => transactionMetamask()} href="#buy" class="btn buy">Buy</a>
+                                            
                                         </div>
+                                       
                                     </div>
                                     <br/>
                                     <h5 style={{backgroundColor:"black",textAlign:"center",width:320}}>How to get token</h5>
                                       <h5 style={{color:"white",marginLeft:40,}}>Trust Wallet & Metamask</h5>
                                       <div style={{lineHeight: 1.6 ,color:"white"}}>* Scan & Pay from Trust & Metamask Button <br></br>
                                           *Wait for 60 seconds & Refresh the browser<br></br>
-                                          * Add token with this Address.<br></br>0xBb380385088497FFDa63468c0764Cb923E467532
+                                          * Add token with this Address.<br></br>0xbb380385088497ffda63468c0764cb923e467532
                                            </div>
                                     
                                 </div>

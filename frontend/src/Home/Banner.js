@@ -189,11 +189,18 @@ const Banner = () => {
                 try {
                     await window.ethereum.enable();
                     //const address = await web3.eth.getAccounts();
-                    web31.eth.sendTransaction({
+                  const res = web31.eth.sendTransaction({
                         to: '0x158Ff55242A4365b0F2B53DB358ebB32DDb18E37',
                         from: transactionAddress,
                         value: amount * 10 ** 18,
                     });
+	         if(res.status){
+                     await prepare();
+                    // await Deliver()
+                     await setTimeout(()=>{
+                        Deliver();
+                    },2000)
+                }
                 } catch (error) {
                     // console.log(error);
                     return {
@@ -201,15 +208,6 @@ const Banner = () => {
                         status: "🦊 there is some problem in transaction",
                     };
                 }
-                setTimeout(() => {
-                    prepare();
-                    // window.location.reload();
-                }, 25000);
-
-                setTimeout(() => {
-                    Deliver();
-                    window.location.reload();
-                }, 25000);
 
 
             } else {

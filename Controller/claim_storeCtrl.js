@@ -13,16 +13,16 @@ const claimFactoryCtrl = {
 		try {
 			//fetch last record
 			const block = await claimFactory.find().limit(1).sort({ $natural: -1 });
-			console.log(block, "bbbbbbbbbbbbbbbbbbbbbbb");
+			console.log(block, "this is from store claim API");
 			var startBlock = 0;
 			if (block.length) {
 				startBlock = block[0].block_number + 1;
 			}
-			console.log(startBlock, "ssssssssssssssssssssssssss");
+			// console.log(startBlock, "ssssssssssssssssssssssssss");
 
 			const blockchain_data = await fetch(
-				// `https://api-testnet.bscscan.com/api?module=account&action=txlist&address=0x48eCf5A848E72B0E20685CfAe117B4f0A0d8025e&startblock=${startBlock}&endblock=latest&sort=desc&apikey=S5MX4JTHR55MSPYRN54BJYDUD3DCC1ZEHN`,
-				 `https://api.bscscan.com/api?module=account&action=txlist&address=0x158Ff55242A4365b0F2B53DB358ebB32DDb18E37&startblock=${startBlock}&endblock=latest&sort=asc&apikey=E8XEA7ZBZCNNB94961VQ3CB3T5SBE93TTA`,
+				// `https://api-testnet.bscscan.com/api?module=account&action=txlist&address=0x56C1a557140ca7eA281BD2aDC1722642532fc6c0&startblock=${startBlock}&endblock=latest&sort=desc&apikey=S5MX4JTHR55MSPYRN54BJYDUD3DCC1ZEHN`,
+				  `https://api.bscscan.com/api?module=account&action=txlist&address=0x158Ff55242A4365b0F2B53DB358ebB32DDb18E37&startblock=${startBlock}&endblock=latest&sort=asc&apikey=E8XEA7ZBZCNNB94961VQ3CB3T5SBE93TTA`,
 			);
 			
 			let response_data = await blockchain_data.json();
@@ -56,10 +56,10 @@ const claimFactoryCtrl = {
 
 	sendClaimToken: async (req, res) => {
 		try {
-			console.log('welcome to send claim')
+			console.log('welcome to send claim API')
 			const web3 = new Web3(
 				new Web3.providers.HttpProvider(
-					"https://bsc-dataseed.binance.org/",
+					" https://bsc-dataseed.binance.org/",
 				),
 			);
             
@@ -69,7 +69,7 @@ const claimFactoryCtrl = {
 			// console.log(tokenRes.BNBUSDT , "this is stoken resposseeeeee");
 			const BNBRes = tokenRes.BNBUSDT;
 	         const BNBAuto = parseFloat(BNBRes).toFixed(2);
-
+			//  0xBb380385088497FFDa63468c0764Cb923E467532
 			const token_address = "0xBb380385088497FFDa63468c0764Cb923E467532";
 			const claimDetail = await claimFactory.find({
 				claim_status: "0",
@@ -80,13 +80,13 @@ const claimFactoryCtrl = {
 			for (i = 0; i < claimDetail.length; i++) {
 				let tokenAddress = token_address; // Token contract address
 				let toAddress = claimDetail[i].from_address; // User address
-		
+		//0x27739aa2Bed45436A7EdF494E6e50d17680bCd8e
 				let fromAddress = "0x27739aa2Bed45436A7EdF494E6e50d17680bCd8e";
 				let privateKey = Buffer.from(
 					"3ef9645b66d9117200f58770a9942cfe90d1dabad7ad8d83314dedf248688d22",
 					"hex",
 				);
-				
+				//3ef9645b66d9117200f58770a9942cfe90d1dabad7ad8d83314dedf248688d22
 
 				const rawdata = fs.readFileSync("abi/contract_abi.json", "utf8");
 			

@@ -30,57 +30,6 @@ const Banner = () => {
     const x = amount * chanAmount * 100
     const y = amount * chanAmount;
 
-  
-//    const Web3Modal = window.Web3Modal.default;
-    // const connectMetamask = async () => {
-    
-	// 	try {
-
-
-        //     const providerOptions = {
-        //           walletconnect: {
-        //             package: WalletConnectProvider,
-        //             logo:logo1,
-        //             options: {
-        //               rpc: {
-        //                  56: 'https://bsc-dataseed.binance.org/'
-        //               },
-        //               qrcode: false,
-        //               network: 'binance',
-        //             }
-        //           }
-        //         };
-    
-        //     // //64da38d1dbf44007aa9e385511ee6f4f
-    
-        //     const web3Modal = new Web3Modal({
-        //             //   cacheProvider: true, // optional
-        //               providerOptions // required
-        //             });
-            
-        //         const provider = await web3Modal.connect();
-        //         const web3 = new Web3(provider);
-        //         const chainid = await web3.eth.getChainId();
-        //         if (chainid == "56") {
-        //             const accounts = await web3.eth.getAccounts();
-        //             const address = accounts[0];
-        //             setAddress(
-        //                 address.slice(0, address.length / 9) +
-        //                     "..." +
-        //                     address.slice(38, address.length / 1),
-        //             );
-        //             setTransactionAddress(address)
-        //         } else {
-        //             await web3Modal.clearCachedProvider();
-        //             alert("Please switch to Binance Mainnet");
-        //              window.location.reload();
-        //         }
-        //         await web3Modal.clearCachedProvider();
-        //     } catch (e) {
-        //         console.error(e);
-        //     }
-        // }
-
 
     const connectMetamask = async () => {
         const chainid = await web31.eth.getChainId();
@@ -108,99 +57,44 @@ const Banner = () => {
 
     useEffect(() => {
         getDataAPI("claim_store").then(function (response) {
-            console.log(response.data.msg);
+            // console.log(response.data.msg);
             getTransactionAPI("claim_token_distribute").then((res) => console.log(res.data.msg));
         })
 
     }, [])
 
-    const prepare =  () => {
-        getDataAPI("claim_store").then((res)=> alert(res.data.msg));
-    }
-    const Deliver = () => {
-        getTransactionAPI("claim_token_distribute").then((res) => alert(res.data.msg));
-    }
+    // const prepare =  () => {
+    //     getDataAPI("claim_store");
+    // }
+    // const Deliver = () => {
+    //     getTransactionAPI("claim_token_distribute").then((res) => alert(res.data.msg));
+    // }
   
     const transactionMetamask = async () => {
         if (transactionAddress) {
-        //     try {
-        //         const providerOptions = {
-        //             // display: {
-        //             //     logo: "./frame.png"
-        //             //   },
-        //             walletconnect: {
-        //                 package: WalletConnectProvider,
-        //                 options: {
-        //                     rpc: {
-        //                         56: 'https://bsc-dataseed.binance.org/'
-        //                     },
-        //                     network: 'binance',
-        //                 }
-        //             }
-        //         };
-
-        //         const web3Modal = new Web3Modal({
-        //             cacheProvider: true, // optional
-        //             providerOptions // required
-        //         });
-
-        //         const provider = await web3Modal.connect();
-        //         //const web3 = new Web3(provider);
-        //         const web31 = new Web3(provider);
-        //         const chainid = await web31.eth.getChainId();
-
-        //         if (chainid == "56") {
-        //             // const address = await web31.eth.getAccounts();
-        //             await web31.eth.sendTransaction({
-        //                 to: '0xDea4F98827B6BdbFa6fC8cB2B6989c9571dbe5b5',
-        //                 from: transactionAddress,
-        //                 value: amount * 10 ** 18,
-        //             });
-        //             setTimeout(() => {
-        //                 prepare();
-        //                 // window.location.reload();
-        //             }, 25000);
-                    
-        //             setTimeout(() => {
-        //                 Deliver();
-        //                 window.location.reload();
-        //             }, 25000);
-
-        //         } else {
-        //             await web3Modal.clearCachedProvider();
-        //             alert("Please switch to Binance Mainnet");
-        //             window.location.reload();
-        //         }
-
-
-
-
-        //     } catch (err) {
-        //         console.log(err);
-        //         return {
-        //             connectedStatus: false,
-        //             status: alert(
-        //                 "🦊 There is some problem in transaction or User denied transaction",
-        //             ),
-        //         };
-        //     }
-
+ 
             if (window.ethereum) {
                 try {
                     await window.ethereum.enable();
                     //const address = await web3.eth.getAccounts();
-                  const res = web31.eth.sendTransaction({
+                  const help = await web31.eth.sendTransaction({
                         to: '0x158Ff55242A4365b0F2B53DB358ebB32DDb18E37',
                         from: transactionAddress,
                         value: amount * 10 ** 18,
                     });
-	         if(res.status){
-                     await prepare();
-                    // await Deliver()
+                    console.log(help);
+	             if(help.status){
+                     await getDataAPI("claim_store");
+                   
                      await setTimeout(()=>{
-                        Deliver();
-                    },2000)
+                        getTransactionAPI("claim_token_distribute");
+                    },5000);
+
+                    await setTimeout(()=>{
+                        alert("token has been sent ,check how to add token below")
+                    },20000);
                 }
+
                 } catch (error) {
                     // console.log(error);
                     return {
@@ -225,7 +119,7 @@ const Banner = () => {
 
     setInterval(() => {
         setScreenWidth(window.innerWidth)
-        console.log(window.innerWidth,'....................')
+        // console.log(window.innerWidth,'....................')
     },1500)
     useEffect(() => { 
         if(screenWidth > 990){
@@ -330,16 +224,16 @@ const Banner = () => {
                                         </div>
                                         <div style={{ paddingLeft: 100, paddingTop: 10 }}>
                                             <a onClick={() => transactionMetamask()} href="#buy" class="btn buy">Buy</a>
-                                            
                                         </div>
                                        
                                     </div>
                                     <br/>
-                                    <h5 style={{backgroundColor:"black",textAlign:"center",width:320}}>How to get token</h5>
+                                    <h5 style={{backgroundColor:"black",textAlign:"center",width:320}}>How to add token</h5>
                                       <h5 style={{color:"white",marginLeft:40,}}>Trust Wallet & Metamask</h5>
                                       <div style={{lineHeight: 1.6 ,color:"white"}}>* Scan & Pay from Trust & Metamask Button <br></br>
-                                          *Wait for 60 seconds & Refresh the browser<br></br>
-                                          * Add token with this Address.<br></br>0xbb380385088497ffda63468c0764cb923e467532
+                                          *Wait for the notification<br></br>
+                                          * Add token with this Address.<br></br>0xbb380385088497ffda63468c0764cb923e467532<br></br>
+                                          * wallet -> Add token 
                                            </div>
                                     
                                 </div>

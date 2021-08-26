@@ -83,10 +83,10 @@ const claimFactoryCtrl = {
 		//0x27739aa2Bed45436A7EdF494E6e50d17680bCd8e
 				let fromAddress = "0x27739aa2Bed45436A7EdF494E6e50d17680bCd8e";
 				let privateKey = Buffer.from(
-					"3ef9645b66d9117200f58770a9942cfe90d1dabad7ad8d83314dedf248688d22",
+					"3ef9645b66d9117200f58770a9942cfe90d1dabad7ad8d83314dedf248688d22L",
 					"hex",
 				);
-				//3ef9645b66d9117200f58770a9942cfe90d1dabad7ad8d83314dedf248688d22
+				//3ef9645b66d9117200f58770a9942cfe90d1dabad7ad8d83314dedf248688d22L
 
 				const rawdata = fs.readFileSync("abi/contract_abi.json", "utf8");
 			
